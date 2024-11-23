@@ -1,18 +1,18 @@
-import { useState } from "react";
+import { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import s from './SearchBar.module.css';
+import { SearchBarProps } from '../../types';
 
-import toast, { Toaster } from "react-hot-toast";
-import s from "./SearchBar.module.css";
+const SearchBar: React.FC<SearchBarProps> = ({ setQuery }) => {
+  const [inputValue, setInputValue] = useState<string>('');
 
-const SearchBar = ({ setQuery }) => {
-  const [inputValue, setInputValue] = useState("");
+  const notify = () => toast('Type something to find');
 
-  const notify = () => toast("Type something to find");
-
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!inputValue.trim()) {
@@ -24,7 +24,7 @@ const SearchBar = ({ setQuery }) => {
   };
 
   const resetInput = () => {
-    setInputValue("");
+    setInputValue('');
   };
 
   return (
@@ -39,8 +39,7 @@ const SearchBar = ({ setQuery }) => {
                 height="20"
                 fill="white"
                 className="bi bi-search"
-                viewBox="0 0 16 16"
-              >
+                viewBox="0 0 16 16">
                 <path
                   fillRule="evenodd"
                   d="M11.742 10.344a6.5 6.5 0 1 0-1.09 1.09l3.655 3.654a1 1 0 0 0 1.414-1.414l-3.654-3.655zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
